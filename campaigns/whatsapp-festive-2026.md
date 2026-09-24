@@ -61,20 +61,43 @@ checkout. The ATC→checkout leak is where WhatsApp pays for itself.
 
 ---
 
-## 2. Cohort → product → discount map
+## 2. The flat discount ladder
 
-| # | Cohort | Size | Product logic | Discount | Code |
+Flat ₹ off, not %, in **shagun denominations** — ₹151 / ₹251 / ₹351 / ₹751 / ₹1,100.
+For a devotional brand these read as a blessing amount, not a markdown, and they do
+something a percentage cannot: **a flat amount behind a minimum cart lifts AOV.**
+
+| Tier | Offer | Min cart | Effective % at the floor |
+|---|---|---|---|
+| 1 | **₹151 off** | ₹1,499 | 10.1% |
+| 2 | **₹251 off** | ₹1,999 | 12.6% |
+| 3 | **₹351 off** | ₹2,999 | 11.7% |
+| 4 | **₹751 off** | ₹5,999 | 12.5% |
+| 5 | **₹1,100 off** | ₹7,499 | 14.7% (bulk only) |
+
+**Why the minimums matter more than the discount.** Kuber Kalash is ₹1,249 — below every
+tier. A buyer who wants ₹251 off has to reach ₹1,999, so they add a Lakshmi Charan (₹1,499)
+or a Panchmukhi Diya (₹1,999). You pay ₹251 and collect ~₹2,750 instead of ₹1,249.
+At 10% off you would have paid ₹125 and collected ₹1,124. **Flat + threshold nearly doubles
+the order.** That is the whole argument for this structure.
+
+Never run a flat amount without a minimum. ₹251 off an unguarded ₹1,249 Kalash is 20% —
+6x your normal discount rate on your highest-volume SKU.
+
+### Cohort → product → flat offer
+
+| # | Cohort | Size | Product | Flat offer | Code |
 |---|---|---|---|---|---|
-| 1 | ATC – 180 Days | 2,398 | Their exact cart SKU (dynamic) | 10% | AASTHA10 |
-| 2 | PDP Visit 2–7 Days | 4,417 | Their exact viewed SKU (dynamic) | **0% — free gift box + priority dispatch** | — |
-| 3 | PDP Visit 7–14 Days | 4,231 | Viewed SKU + Kuber Kalash cross-sell | 10% | AASTHA10 |
-| 4 | PDP Visit 15–30 Days | 6,003 | **Switch** to Kuber Kalash ₹1,249 (drop the price barrier) | 15% | LAKSHMI15 |
-| 5 | Coll Visit – 180 Days | 1,538 | Lakshmi Ganesh Set ₹2,499 (collection-level, high AOV) | 12% | SET12 |
-| 6 | HP Visit 7–30 Days | 5,975 | Elephant Pair ₹1,499 (#1 revenue, pure social proof) | 15% first order | AASTHA15 |
-| 7 | Orders – 180 Days | 2,635 | **Completion logic** — they have Ganesha, they need Lakshmi | **0% — early access** | — |
-| 8 | Orders – 180 Days (bulk slice) | ~300 | Corporate gifting: Shubh Labh pack of 6 ₹7,499 | Tiered by qty | BULK |
-| 9 | All cohorts (27 Sep–10 Oct) | ~27k | **No selling** — Navratri pre-book / reserve | 0% | — |
-| 10 | All cohorts (6 Nov) | ~27k | Lakshmi Charan + Kuber Kalash — Dhanteras muhurat | 10% | DHAN10 |
+| 1 | ATC – 180 Days | 2,398 | Their exact cart SKU (dynamic) | **₹151 off** above ₹1,499 | CART151 |
+| 2 | PDP Visit 2–7 Days | 4,417 | Their exact viewed SKU (dynamic) | **No discount** — free velvet box + priority dispatch | — |
+| 3 | PDP Visit 7–14 Days | 4,231 | Viewed SKU + Kalash cross-sell | **₹151 off** above ₹1,499 | AASTHA151 |
+| 4 | PDP Visit 15–30 Days | 6,003 | **Switch** to Kuber Kalash ₹1,249 | **₹251 off** above ₹1,999 | LAKSHMI251 |
+| 5 | Coll Visit – 180 Days | 1,538 | Lakshmi Ganesh Set ₹2,499 | **₹351 off** above ₹2,999 | SET351 |
+| 6 | HP Visit 7–30 Days | 5,975 | Elephant Pair ₹1,499 | **₹151 off** first order | FIRST151 |
+| 7 | Orders – 180 Days | 2,635 | Lakshmi Charan ₹1,499 | **No discount** — 48h early access | — |
+| 8 | Orders – 180 Days (bulk) | ~300 | Shubh Labh 6-pack ₹7,499 | **₹1,100 off** above ₹7,499 | BULK1100 |
+| 9 | All cohorts (27 Sep–10 Oct) | ~27k | Navratri pre-book | None | — |
+| 10 | All cohorts (6 Nov) | ~27k | Charan + Kalash combo | **₹251 off** above ₹1,999 | DHAN251 |
 
 **Suppression order (dedupe top-down, one message per number per day):**
 ATC → PDP 2–7 → PDP 7–14 → PDP 15–30 → Coll → HP.
@@ -101,7 +124,7 @@ Shraddh begins 27 Sep — after that, no new murti enters the ghar
 for 14 days. The next muhurat is Navratri, 11 October.
 
 ₹{{4}} · 999 silver plating · Velvet gift box
-🎁 10% off — code AASTHA10
+🎁 Flat ₹151 off — code CART151
 
 ⏳ Cart clears tonight, 11:59 PM
 — Dev Aastha
@@ -144,7 +167,7 @@ Over 200 families brought home the Kuber Kalash this month alone.
 Silver bought before Shraddh is silver that sits in the mandir
 all year.
 
-🎁 Your price is held 24 hours — 10% off, code AASTHA10
+🎁 Price held 24 hours — flat ₹151 off, code AASTHA151
 
 ⏳ After 27 Sep, the next shubh muhurat is 11 October.
 — Dev Aastha
@@ -166,12 +189,14 @@ the year's wealth is invited to settle.
 999 silver plated · ₹1,249 only
 🏆 200+ homes chose it this month — our most-ordered murti
 
-🎁 Extra 15% off — code LAKSHMI15
+Add a Lakshmi Charan (₹1,499) and the pair comes to ₹2,748.
+🎁 Flat ₹251 off — code LAKSHMI251 → **₹2,497**
+
 ⏳ Ends tonight. Shraddh starts tomorrow.
 
 — Dev Aastha
 ```
-**Buttons:** `Buy Now ₹1,249` · `Explore Collection`
+**Buttons:** `Buy Now` · `Explore Collection`
 
 > **Why switch products:** this cohort went cold on whatever they viewed. Re-showing the
 > same SKU re-loses them. Drop them to your ₹1,249 highest-volume hero — lowest price
@@ -191,7 +216,9 @@ On Diwali night the two are never kept apart.
 Silver-Plated Lakshmi Ganesha Set — ₹2,499
 59 sets left our workshop this month. 403 in stock.
 
-🎁 12% off the full set — code SET12
+Pair it with the Panchmukhi Diya (₹1,999) — ₹4,498 together.
+🎁 Flat ₹351 off — code SET351 → **₹4,147**
+
 ⏳ Tonight only. Shraddh begins tomorrow.
 
 — Dev Aastha
@@ -214,7 +241,7 @@ Placed at the entrance facing inward, the elephant is the Vastu
 symbol of stability, and the bearer Gaja-Lakshmi rides in on.
 
 From ₹1,499 · 999 silver plating · Gift box
-🎁 First order 15% off — code AASTHA15
+🎁 Flat ₹151 off your first order — code FIRST151
 
 ⏳ Before Shraddh, tomorrow.
 — Dev Aastha
@@ -263,6 +290,7 @@ profit. Hung at the entrance, it is the one Diwali gift nobody
 re-gifts.
 
 Pack of 6 — ₹7,499 (₹1,250 each)
+🎁 Flat ₹1,100 off — code BULK1100 → ₹6,399
 Also: Kuber Kalash ₹1,249 · Lakshmi Charan ₹1,499
 
 ✅ Free branded gift boxes
@@ -322,8 +350,8 @@ Her footprints at your entrance, facing in.
 Kuber Kalash — ₹1,249
 The treasurer's vessel for your mandir.
 
-Both together — ₹2,499 (save ₹249)
-🎁 10% off everything today — code DHAN10
+Both together — ₹2,748
+🎁 Flat ₹251 off — code DHAN251 → **₹2,497**
 
 ⏳ Muhurat closes tonight. Same-day dispatch till 2 PM.
 — Dev Aastha
@@ -369,8 +397,9 @@ Assumes one-touch response rates typical for opt-in WhatsApp retargeting, at you
 | Orders 180d | 2,635 | 4.0% | 105 | ₹2,31,000 |
 | **Total (full arc)** | | | **~459** | **~₹8,94,600** |
 
-Blended discount cost at this mix ≈ **7.4%** of campaign revenue (~₹66k), against the
-~3.3% you run today. That is the deliberate trade: the uplift sits in cohorts that were
+Blended discount cost at this mix ≈ **7.1%** of campaign revenue (~₹63k), against the
+~3.3% you run today — and the cart minimums should pull AOV from ₹1,900 toward ₹2,300+,
+which more than pays for the gap. That is the deliberate trade: the uplift sits in cohorts that were
 not going to convert unaided, and the two profitable cohorts (PDP 2–7d, Orders 180d)
 carry no discount at all.
 
@@ -382,8 +411,11 @@ orders at near-zero acquisition cost. Messages 7 and 8 are the ones that move it
 ## 6. Before you send
 
 - Register templates with Meta ~24h ahead — utility vs marketing category changes cost.
-- Create the codes in Shopify first: AASTHA10, LAKSHMI15, SET12, AASTHA15, DHAN10.
-  Set expiry to match the copy exactly, and cap DHAN10 to 6 Nov only.
+- Create the codes in Shopify as **fixed-amount** discounts with a **minimum purchase
+  amount** set on every one — CART151, AASTHA151, LAKSHMI251, SET351, FIRST151,
+  BULK1100, DHAN251. A fixed-amount code with no minimum is the one way this structure
+  loses money. Cap DHAN251 to 6 Nov only.
+- Set FIRST151 to one-use-per-customer, new customers only.
 - Stock check: Standing Hanuman 5.5" is at **0 inventory** and Balaji 6"/8" variants are
   at **0** — exclude from all sends.
 - A/B on messages 4 and 6 (largest cohorts): test the ₹ price in the first line vs. the
