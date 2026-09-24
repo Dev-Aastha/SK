@@ -159,20 +159,21 @@ const doc = new Document({
           {size:16,color:"78716C",i:true}),{after:100}),
       table,
 
-      p(t("Send plan — the order they actually go out",{bold:true,size:24,color:DEEP}),{before:260,after:60}),
+      p(t("Send plan — your seven cohorts, in your segment-list sequence",{bold:true,size:24,color:DEEP}),{before:260,after:60}),
       ...bullets([
-        "24 Sep, 7:00 PM — Campaign 7 · ATC – 180 Days (2,398)",
+        "24 Sep, 11:00 AM — Campaign 1 · PDP Visit 15–30 Days (6,003)",
+        "24 Sep, 6:30 PM — Campaign 2 · PDP Visit 7–14 Days (4,231)",
         "25 Sep, 11:00 AM — Campaign 3 · PDP Visit 2–7 Days (4,417)",
-        "25 Sep, 6:30 PM — Campaign 2 · PDP Visit 7–14 Days (4,231)",
-        "26 Sep, 12:00 PM — Campaign 1 · PDP Visit 15–30 Days (6,003)",
-        "26 Sep, 1:00 PM — Campaign 6 · Orders – 180 Days (2,635)",
-        "26 Sep, 5:00 PM — Campaign 4 · Coll Visit – 180 Days (1,538)",
-        "26 Sep, 8:00 PM — Campaign 5 · HP Visit 7–30 Days (5,975)",
+        "25 Sep, 5:00 PM — Campaign 4 · Coll Visit – 180 Days (1,538)",
+        "25 Sep, 8:00 PM — Campaign 5 · HP Visit 7–30 Days (5,975)",
+        "26 Sep, 12:00 PM — Campaign 6 · Orders – 180 Days (2,635)",
+        "26 Sep, 7:00 PM — Campaign 7 · ATC – 180 Days (2,398) — last send before the wall",
         "27 Sep – 10 Oct — SHRADDH. No selling.",
         "28 Sep, 9:00 AM — Campaign 9 · all cohorts, Navratri pre-book (~27,000)",
         "12 Oct, 11:00 AM — Campaign 8 · bulk / corporate slice (~300)",
         "6 Nov, 7:00 AM — Campaign 10 · all cohorts, Dhanteras (~27,000)",
       ],{size:17}),
+      p(t("Every offer in campaigns 1–7 expires 26 September at midnight, whatever day the message goes out. One shared deadline keeps the urgency true and means one expiry date to set on every code.",{size:17,i:true,color:"44403C"}),{before:60}),
 
       p(t("Before you send",{bold:true,size:24,color:DEEP}),{before:260,after:60}),
       ...bullets([
