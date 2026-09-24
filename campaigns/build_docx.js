@@ -46,13 +46,23 @@ const hdr = new TableRow({tableHeader:true, children:[
   ["#",520],["Segment & Send",2000],["WhatsApp Message Copy",5200],["Discount",1900],["Image Suggestion",3100],["CTA Buttons",1680]
 ].map(([label,w])=>cell([p(t(label,{bold:true,color:WHITE,size:18}),{before:40,after:40})],{w,fill:DEEP}))});
 
+function banner(label, note){
+  return new TableRow({children:[ new TableCell({
+    columnSpan: 6,
+    width:{size:CONTENT, type:WidthType.DXA},
+    shading:{type:ShadingType.CLEAR, fill:SAFFRON, color:"auto"},
+    margins:{top:80,bottom:80,left:110,right:110},
+    children:[ p([t(label,{bold:true,size:19,color:WHITE}), t("   "+note,{size:16,color:"FEF3C7"})],{before:20,after:20}) ],
+  })]});
+}
+
 const rows = ROWS.map((r,i)=>{
   const fill = i%2 ? GREY : WHITE;
   return new TableRow({cantSplit:false, children:[
     cell([p(t(r.n,{bold:true,size:22,color:SAFFRON}),{align:AlignmentType.CENTER})],{w:520,fill}),
     cell([ p(t(r.seg,{bold:true,size:18})),
            p(t(r.size,{size:15,color:"78716C"})),
-           p(t(r.send,{size:16,bold:true,color:SAFFRON}),{before:60}) ],{w:2000,fill}),
+           p(t("SEND  "+r.send,{size:16,bold:true,color:SAFFRON}),{before:60}) ],{w:2000,fill}),
     cell(copyParas(r.copy),{w:5200,fill}),
     cell(bullets(r.disc,{size:15}),{w:1900,fill}),
     cell(bullets(r.img,{size:15}),{w:3100,fill}),
@@ -63,7 +73,11 @@ const rows = ROWS.map((r,i)=>{
 const table = new Table({
   columnWidths: COLS,
   width:{size:CONTENT, type:WidthType.DXA},
-  rows:[hdr, ...rows],
+  rows:[hdr,
+        banner("YOUR 7 COHORTS", "— the segments you shared, in your list order"),
+        ...rows.slice(0,7),
+        banner("ADDITIONAL — SUGGESTED", "— three campaigns I have added to cover the gaps in the festive calendar"),
+        ...rows.slice(7)],
   borders:{
     top:{style:BorderStyle.SINGLE,size:6,color:LINE}, bottom:{style:BorderStyle.SINGLE,size:6,color:LINE},
     left:{style:BorderStyle.SINGLE,size:6,color:LINE}, right:{style:BorderStyle.SINGLE,size:6,color:LINE},
@@ -141,9 +155,26 @@ const doc = new Document({
       p(t("Copy is written with WhatsApp bold markup (single asterisks), so it can be pasted in as-is. Creative keeps the established system — product on a wooden base, dark green backdrop, jute mat, and the maroon 999 SILVER PLATED badge top-left — except campaign 9, which deliberately breaks it.",{size:17,i:true,color:"44403C"}),{before:80}),
 
       p(t("The 10 campaigns",{bold:true,size:24,color:DEEP}),{before:260,after:100}),
+      p(t("Campaigns 1–7 are the seven segments you shared, listed in your order. Campaigns 8–10 are additions of mine.",{size:17,bold:true,color:DEEP}),{after:40}),
+      p(t("List order is not send order. The calendar is driven by the 26 September Shraddh deadline, so read the SEND time in each row — campaigns 1–7 all go out between 24 and 26 September, in the sequence given in the send plan below.",{size:17}),{after:60}),
       p(t("Variables:  {{1}} first name  ·  {{2}} product name  ·  {{3}} stock count  ·  {{4}} price",
           {size:16,color:"78716C",i:true}),{after:100}),
       table,
+
+      p(t("Send plan — the order they actually go out",{bold:true,size:24,color:DEEP}),{before:260,after:60}),
+      ...bullets([
+        "24 Sep, 7:00 PM — Campaign 7 · ATC – 180 Days (2,398)",
+        "25 Sep, 11:00 AM — Campaign 3 · PDP Visit 2–7 Days (4,417)",
+        "25 Sep, 6:30 PM — Campaign 2 · PDP Visit 7–14 Days (4,231)",
+        "26 Sep, 12:00 PM — Campaign 1 · PDP Visit 15–30 Days (6,003)",
+        "26 Sep, 1:00 PM — Campaign 6 · Orders – 180 Days (2,635)",
+        "26 Sep, 5:00 PM — Campaign 4 · Coll Visit – 180 Days (1,538)",
+        "26 Sep, 8:00 PM — Campaign 5 · HP Visit 7–30 Days (5,975)",
+        "27 Sep – 10 Oct — SHRADDH. No selling.",
+        "28 Sep, 9:00 AM — Campaign 9 · all cohorts, Navratri pre-book (~27,000)",
+        "12 Oct, 11:00 AM — Campaign 8 · bulk / corporate slice (~300)",
+        "6 Nov, 7:00 AM — Campaign 10 · all cohorts, Dhanteras (~27,000)",
+      ],{size:17}),
 
       p(t("Before you send",{bold:true,size:24,color:DEEP}),{before:260,after:60}),
       ...bullets([
