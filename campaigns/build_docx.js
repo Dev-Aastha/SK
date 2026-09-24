@@ -60,7 +60,9 @@ const rows = ROWS.map((r,i)=>{
   const fill = i%2 ? GREY : WHITE;
   return new TableRow({cantSplit:false, children:[
     cell([p(t(r.n,{bold:true,size:22,color:SAFFRON}),{align:AlignmentType.CENTER})],{w:520,fill}),
-    cell([ p(t(r.seg,{bold:true,size:18})),
+    cell([ p(t(r.grp==="YOUR COHORT" ? "YOUR COHORT" : "SUGGESTED",
+                 {bold:true,size:13,color:r.grp==="YOUR COHORT" ? "166534" : "9A3412"})),
+           p(t(r.seg,{bold:true,size:18}),{before:40}),
            p(t(r.size,{size:15,color:"78716C"})),
            p(t("SEND  "+r.send,{size:16,bold:true,color:SAFFRON}),{before:60}) ],{w:2000,fill}),
     cell(copyParas(r.copy),{w:5200,fill}),
@@ -73,11 +75,7 @@ const rows = ROWS.map((r,i)=>{
 const table = new Table({
   columnWidths: COLS,
   width:{size:CONTENT, type:WidthType.DXA},
-  rows:[hdr,
-        banner("YOUR 7 COHORTS", "— the segments you shared, in your list order"),
-        ...rows.slice(0,7),
-        banner("ADDITIONAL — SUGGESTED", "— three campaigns I have added to cover the gaps in the festive calendar"),
-        ...rows.slice(7)],
+  rows:[hdr, ...rows],
   borders:{
     top:{style:BorderStyle.SINGLE,size:6,color:LINE}, bottom:{style:BorderStyle.SINGLE,size:6,color:LINE},
     left:{style:BorderStyle.SINGLE,size:6,color:LINE}, right:{style:BorderStyle.SINGLE,size:6,color:LINE},
